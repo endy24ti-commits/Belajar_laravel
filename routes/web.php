@@ -39,3 +39,4 @@ Route::get('/matakuliah/show/{param1}', [MatakuliahController::class, 'show']);
 
 Route::post('question/store', [QuestionController::class, 'store'])->name('question.store');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
