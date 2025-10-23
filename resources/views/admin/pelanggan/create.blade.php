@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.layouts.app')
 @section('title', 'Tambah Pelanggan')
 @section('content')
 
@@ -22,7 +22,7 @@
                     <p class="mb-0">Form untuk menambahkan data pelanggan baru.</p>
                 </div>
                 <div>
-                    {{-- <!-- PERBAIKAN: Mengarahkan tombol kembali ke halaman index pelanggan --> --}}
+
                     <a href="{{ route('pelanggan.index') }}" class="btn btn-primary"><i class="fa fa-arrow-left me-1"></i> Kembali</a>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="card border-0 shadow components-section">
                     <div class="card-body">
                         <form action="{{route('pelanggan.store')}}" method="POST">
-                            {{-- <!-- PERBAIKAN 1: Menambahkan CSRF Token untuk keamanan --> --}}
+
                             @csrf
 
                             <div class="row mb-4">
@@ -41,14 +41,12 @@
                                     <!-- First Name -->
                                     <div class="mb-3">
                                         <label for="first_name" class="form-label">First name</label>
-                                        {{-- <!-- PERBAIKAN 2: Menambahkan atribut name="first_name" --> --}}
                                         <input type="text" id="first_name" name="first_name" class="form-control" required>
                                     </div>
 
                                     <!-- Last Name -->
                                     <div class="mb-3">
                                         <label for="last_name" class="form-label">Last name</label>
-                                        {{-- <!-- PERBAIKAN 2: Menambahkan atribut name="last_name" --> --}}
                                         <input type="text" id="last_name" name="last_name" class="form-control" required>
                                     </div>
                                 </div>
@@ -57,14 +55,12 @@
                                     <!-- Birthday -->
                                     <div class="mb-3">
                                         <label for="birthday" class="form-label">Birthday</label>
-                                        {{-- <!-- PERBAIKAN 2: Menambahkan atribut name="birthday" --> --}}
                                         <input type="date" id="birthday" name="birthday" class="form-control">
                                     </div>
 
                                     <!-- Gender -->
                                     <div class="mb-3">
                                         <label for="gender" class="form-label">Gender</label>
-                                        {{-- Atribut "name" di sini sudah benar --}}
                                         <select id="gender" name="gender" class="form-select">
                                             <option value="">-- Pilih --</option>
                                             <option value="Male">Male</option>
@@ -78,14 +74,12 @@
                                     <!-- Email -->
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        {{-- <!-- PERBAIKAN 2: Menambahkan atribut name="email" --> --}}
                                         <input type="email" id="email" name="email" class="form-control" required>
                                     </div>
 
                                     <!-- Phone -->
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Phone</label>
-                                        {{-- <!-- PERBAIKAN 2: Menambahkan atribut name="phone" --> --}}
                                         <input type="text" id="phone" name="phone" class="form-control">
                                     </div>
 
