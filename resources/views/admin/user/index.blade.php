@@ -1,19 +1,16 @@
 @extends('admin.layouts.app')
-@section('title', 'List Pelanggan')
+@section('title', 'List User')
 @section('content')
 
-<!-- Content -->
 <div class="py-4">
     
-    <!-- Bagian Atas: Breadcrumb, Judul, dan Tombol Tambah -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-4">
         
-        <!-- Kolom Kiri: Breadcrumb dan Judul -->
         <div class="d-block mb-4 mb-md-0">
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                 <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('dashboard') }}"> {{-- Diperbaiki: Mengarahkan ke rute dashboard --}}
+                        <a href="{{ route('dashboard') }}">
                             <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -22,17 +19,16 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Pelanggan</li> {{-- Diperbaiki: Halaman index adalah halaman aktif --}}
+                    <li class="breadcrumb-item active" aria-current="page">User</li>
                 </ol>
             </nav>
-            <h1 class="h4">Data Pelanggan</h1>
-            <p class="mb-0">List data seluruh pelanggan</p>
+            <h1 class="h4">Data User</h1>
+            <p class="mb-0">List data seluruh user</p>
         </div>
         
-        <!-- Kolom Kanan: Tombol Tambah -->
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{ route('pelanggan.create') }}" class="btn btn-success text-white">
-                <i class="far fa-question-circle me-1"></i> Tambah Pelanggan
+            <a href="{{ route('user.create') }}" class="btn btn-success text-white">
+                <i class="far fa-question-circle me-1"></i> Tambah User
             </a>
         </div>
     </div>
@@ -44,9 +40,8 @@
         </div>
     @endif
 
-    {{-- Session 'hapus' untuk delete --}}
     @if (session('hapus'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert"> {{-- Menggunakan alert-danger untuk aksi hapus --}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ session('hapus') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -57,29 +52,23 @@
             <div class="card border-0 shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
+                        <table id="table-user" class="table table-centered table-nowrap mb-0 rounded">
                             <thead class="thead-light">
                                 <tr>
-                                    <th class="border-0">First Name</th>
-                                    <th class="border-0">Last Name</th>
-                                    <th class="border-0">Birthday</th>
-                                    <th class="border-0">Gender</th>
+                                    <th class="border-0">Nama</th>
                                     <th class="border-0">Email</th>
-                                    <th class="border-0">Phone</th>
+                                    <th class="border-0">Password</th>
                                     <th class="border-0 rounded-end">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dataPelanggan as $item)
+                                @foreach ($dataUser as $item)
                                     <tr>
-                                        <td>{{ $item->first_name }}</td>
-                                        <td>{{ $item->last_name }}</td>
-                                        <td>{{ $item->birthday }}</td>
-                                        <td>{{ $item->gender }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->phone }}</td>
+                                        <td>{{ $item->password }}</td>
                                         <td>
-                                            <a href="{{ route('pelanggan.edit', $item->pelanggan_id) }}"
+                                            <a href="{{ route('user.edit', $item->id) }}"
                                                 class="btn btn-info btn-sm">
                                                 <svg class="icon icon-xs me-2" data-slot="icon" fill="none"
                                                     stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
@@ -90,8 +79,8 @@
                                                 </svg>
                                                 Edit
                                             </a>
-                                            <form action="{{ route('pelanggan.destroy', $item->pelanggan_id) }}" method="POST"
-                                                style="display:inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')"> {{-- Ditambahkan konfirmasi hapus --}}
+                                            <form action="{{ route('user.destroy', $item->id) }}" method="POST"
+                                                style="display:inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">
